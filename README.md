@@ -1,5 +1,5 @@
 # API Rest em Nodejs
-<p>API Rest contruída com intuido de desenvolver habilidades em Node.js</p>
+<p>API Rest construída com intuido de desenvolver habilidades em Node.js</p>
 <p>A API é simples, feita para acessar banco Mysql.</p> 
 <p>O atual código permite acesso a apenas 3 tabelas: Usuários, Produtos e Pedidos.</p>
 <p>A API foi criada para permitir o estudo de react native. No caso, consumindo a mesma.</p>
