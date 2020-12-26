@@ -1,10 +1,49 @@
-# API Rest em Nodejs
-<p>API Rest construída com intuito de desenvolver habilidades em Node.js</p>
-<p>A API é simples, feita para acessar banco Mysql.</p> 
-<p>O atual código permite acesso a apenas 3 tabelas: Usuários, Produtos e Pedidos.</p>
-<p>A API foi criada para permitir o estudo de react native. No caso, consumindo a mesma.</p>
+# API Rest para gerenciamento de estoque em Nodejs
 
-### Execução
-<p>Para executá-la, primeiramente deve-se ter instalado o Node.js.</p>
-<p>O diretório com os módulos do node não está incluso, sendo necessário executar o comando "npm install", na raiz do projeto, para que sejam resolvidas as dependências</p>
-<p>Para executar o projeto, basta executar o comando "npm start" ou "node src/index.js".</p>
+API Rest que permite gerenciamento simples de um estoque, possibilitando cadastro, atualização, busca personalizada e exclusão de usuários, produtos e pedidos.
+Utiliza-se do banco Mysql para armazenamento das informações.
+Os produtos e pedidos só podem ser visualizadas pelo usuário que os cadastraram. Por esse motivo, há um controle de login, sendo possível realizar esse cadastro apenas com um token - JWT - válido.
+Para se obter o token, é necessário efetuar o cadastro e login.
+
+## Tecnologias utilizadas
+
+- Nodejs;
+- Express;
+- Mysql;
+- Bcrypt;
+- JWT;
+- Nodemon;
+
+## Como Utilizar
+
+- Com o Node.js devidamente instalado, execute o seguinte comando na raiz do projeto para que as dependências sejam instaladas:
+
+```shell
+npm install
+```
+
+- O banco de dados Mysql deve estar instalado e rodando localmente. 
+
+Para rodar a aplicação, basta executar:
+
+```
+npm start
+```
+
+
+## Explicação geral de uso
+
+Após o projeto estar rodando, estará disponível na porta 3000. É necessário, primeiramente, efetuar o cadastro do usuário, só então será possível efetuar a autenticação e obter o token.
+Em posse do token, é necessário coloca-lo no Header da requisição - como Authorization - para que seja possível efetuar o cadastro e listagem dos produtos e pedidos, como no seguinte exemplo:
+```
+Authorization Bearer token-fornecido
+```
+
+## Rotas
+
+| Rota                   | Requisição | Função                                 | Body                                                                                                                                                                       | Auteticação por Token? |
+| ---------------------- | ---- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| /cadastro                 | POST | Cadastro de usuário                           | email(string), senha(string)                                                                                                                                             | Não         |
+| /login               | POST  | Efetua o login do usuário          | email(String), senha(String)                                                                                                                                                                        | Sim          |
+| /produto | POST  | Cadastra produtor      | produto(String), preço(Float), imagem(Imagem) }                                                                                                                                                                        | Sim          |
+| /pedido             | POST  | retorna todosos pedidos cadastrados             | quantidade(numeric) id_produto(numeric), produto(String), preco(Float)                                                                                                                                                                       | Sim          |
